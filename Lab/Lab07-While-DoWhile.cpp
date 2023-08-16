@@ -35,7 +35,7 @@
             75
         Sorry, the winning number is LOWER than 75. (Score=90)
         Guess the winning number (1-74) : 
-            20
+            20 
         Sorry, the winning number is LOWER than 20. (Score=80)
         Guess the winning number (1-19) : 
             2
@@ -50,10 +50,44 @@
 */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 int main() {
+    int score = 100 ;
+    int start ;
+    int NumberRandom ;
+    int num ;
+    int min = 1 , max = 100 ;
+        srand(time(NULL)) ;
+        NumberRandom = rand() % 100 + 1 ;
+        printf( "%d" , NumberRandom ) ;
 
-    //--| YOUR CODE HERE
+        printf( "Do you want to play game (1=play,-1=exit) : \n" ) ;
+        scanf( "%d" , &start ) ;
 
-    return 0 ;
+        printf("\nScore=100\n" ) ;
+        printf("Guess the winning number (1-100) :\n") ;
+        while (start == 1 ) { 
+            scanf("%d" , &num ) ;
+            if( num > NumberRandom ) {
+                score -= 10 ;
+                max = num - 1 ; 
+                printf("Sorry, the winning number is LOWER than %d. (Score=%d) \n", num, score ) ;
+                printf( "Guess the winning number ( %d-%d ) : ", min , max ) ;
+            }
+            else if ( num < NumberRandom ) {
+                score -= 10 ;
+                min = num + 1 ; 
+                printf( "Sorry, the winning number is HIGHER than %d. (Score=%d) \n", num, score ) ;
+                printf( "Guess the winning number ( %d-%d ) : ", min , max ) ;
+            }
+            else if ( num == NumberRandom ) {
+                printf("That is correct! The winning number is %d.\n" , NumberRandom ) ;
+                printf("Score this game: %d \n" , score ) ;
+            }
+            
+
+        } 
+        return 0 ;
 }//end main function
