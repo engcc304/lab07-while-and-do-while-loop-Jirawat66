@@ -35,7 +35,7 @@
             75
         Sorry, the winning number is LOWER than 75. (Score=90)
         Guess the winning number (1-74) : 
-            20
+            20 
         Sorry, the winning number is LOWER than 20. (Score=80)
         Guess the winning number (1-19) : 
             2
@@ -48,12 +48,53 @@
         Do you want to play game (1=play,-1=exit) :
             -1
 */
-
 #include <stdio.h>
-
+#include <stdlib.h>
+#include <time.h>
 int main() {
-
-    //--| YOUR CODE HERE
-
-    return 0 ;
-}//end main function
+    int score = 100 ;
+    int answer ;
+    int playgame ;
+    int min = 1 ;
+    int max = 100 ;
+    do{
+        srand(time(NULL)) ;
+        int randomnumber = rand() % 100 + 1 ;
+        printf("\nDo you want to play game (1=play,-1=exit) :\n") ;
+        scanf("%d", &playgame) ;
+        printf("(Score=%d)\n",score) ;
+        if(playgame == 1)
+        {
+            printf("Guess the winning number (1-100) :\n") ;
+            scanf("%d",&answer) ;
+            while(answer!=randomnumber){
+                score = score -10 ;
+                if(answer < randomnumber)
+                {
+                    min = answer+1 ;
+                    printf("Sorry, the winning number is HIGHER than %d. (Score=%d)\n", answer , score) ;
+                    printf("Guess the winning number (%d-%d) :\n", min , max) ;
+                    scanf("%d", &answer) ;
+                }
+                else
+                {
+                    max = answer-1 ;
+                    printf("Sorry, the winning number is LOWER than %d. (Score=%d)\n", answer , score) ;
+                    printf("Guess the winning number (%d-%d) :\n", min , max) ;
+                    scanf("%d", &answer) ;
+                }
+                if(answer == randomnumber)
+                {
+                printf("That is correct The winning number is %d\n" , randomnumber) ;
+                printf("Score this game: %d\n" , score) ;
+                }
+                else if(score==0)
+                {
+                printf("That is wrong The winning number is %d\n", randomnumber) ;
+                printf("Score this game: %d\n", score) ;
+                }
+            }
+        } 
+    }
+    while(playgame == 1) ;
+}
