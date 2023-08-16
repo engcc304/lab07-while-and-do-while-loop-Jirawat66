@@ -67,7 +67,7 @@ int main() {
         {
             printf("Guess the winning number (1-100) :\n") ;
             scanf("%d",&answer) ;
-            while(answer = randomnumber){
+            while(answer != randomnumber){
                 score = score -10 ;
                 if(answer < randomnumber)
                 {
